@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:student/model/student_model.dart';
 import 'package:student/new_student/new_student_viewmodel.dart';
 
 class NewStudentView extends StatefulWidget {
@@ -11,7 +10,6 @@ class NewStudentView extends StatefulWidget {
 }
 
 class _NewStudentViewState extends State<NewStudentView> {
-
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<NewStudentViewModel>(context);
@@ -22,6 +20,7 @@ class _NewStudentViewState extends State<NewStudentView> {
       body: Container(
         height: 300,
         width: double.infinity,
+        margin: EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -29,10 +28,7 @@ class _NewStudentViewState extends State<NewStudentView> {
               controller: provider.controller,
             ),
             ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context,provider.controller.text);
-                provider.controller.clear();
-              },
+              onPressed: () => provider.addNewStudent(context),
               child: Text('Add'),
             )
           ],
